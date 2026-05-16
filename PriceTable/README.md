@@ -96,7 +96,7 @@ This project helped in understanding:
 
 ## Author
 
-**DARSHINI R**
+**R DARSHINI**
 
 ---
 
