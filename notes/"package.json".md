@@ -79,3 +79,37 @@ npm i colors
 # 4. Run the application
 node index.js
 ```
+
+# Node.js Notes: Sharing Code & The `npm install` Workflow
+
+## Core Workflow Concept
+* **Never Share `node_modules`**: The `node_modules` folder contains actual source files for all external libraries and their sub-dependencies. It is often massive in size. Therefore, it is strictly excluded when uploading code to Git/GitHub or sending zip files to other developers.
+* **Share `package.json` Instead**: Since `package.json` explicitly outlines all necessary dependencies and version limits, other developers can instantly recreate the entire codebase environment from it.
+
+---
+
+## Recovering Code Dependencies
+
+If you download a project repository (like from GitHub) that contains a `package.json` but **no `node_modules` folder**, running the code directly will crash with an error (`Cannot find module '<package>'`).
+
+To restore the environment and resolve the missing links:
+1. Navigate to the root directory where the `package.json` file resides.
+2. Run `npm install` (or simply `npm i`) with **nothing after it**.
+
+NPM automatically scans the `"dependencies"` array in the `package.json` file, fetches the correct versions from the web, generates a fresh `node_modules` folder, and sets up a `package-lock.json` file.
+
+---
+
+## Step-by-Step Terminal Workflow
+
+```bash
+# 1. Download and enter the shared project directory
+cd node-group-chat-master
+
+# 2. Re-create the node_modules folder based on package.json
+npm install
+
+# 3. Safely launch the app now that dependencies exist
+node index.js
+```
+
